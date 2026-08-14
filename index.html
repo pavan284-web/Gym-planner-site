@@ -1,0 +1,227 @@
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iron Harbor Gym Planner</title>
+    <meta
+      name="description"
+      content="Retro-inspired gym planner with signup, login, BMI analysis, weekly diet plan, and workout scheduling."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="scanlines"></div>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="Iron Harbor brand">
+          <span class="brand-mark">IRON</span>
+          <span class="brand-sub">HARBOR</span>
+        </div>
+        <nav class="nav">
+          <span>PLAN</span>
+          <span>DIET</span>
+          <span>TRACK</span>
+        </nav>
+      </header>
+
+      <main class="hero-grid">
+        <section class="panel hero-panel">
+          <p class="eyebrow">WELCOME TO THE FITNESS LAB</p>
+          <h1>Build your strongest week.</h1>
+          <p class="hero-copy">
+            Sign up, log in, enter your details, and get a personalized weekly plan
+            built around your BMI, calories, goals, and work hours.
+          </p>
+          <div class="hero-stats">
+            <div>
+              <strong>7</strong>
+              <span>Day plan</span>
+            </div>
+            <div>
+              <strong>BMI</strong>
+              <span>Smart tracking</span>
+            </div>
+            <div>
+              <strong>24/7</strong>
+              <span>Routine mode</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel auth-panel">
+          <div class="section-heading auth-head">
+            <h2>USER ACCESS</h2>
+            <span>LOGIN</span>
+          </div>
+
+          <div class="auth-toggle" aria-label="Access mode selector">
+            <button type="button" class="toggle-btn active" data-mode="login">Login</button>
+            <button type="button" class="toggle-btn" data-mode="signup">Sign Up</button>
+          </div>
+
+          <div id="loginPanel" class="auth-form-panel">
+            <form id="loginForm" class="stacked-form">
+              <label>
+                <span>Username</span>
+                <input type="text" id="username" placeholder="Enter username" required />
+              </label>
+              <label>
+                <span>Password</span>
+                <input type="password" id="password" placeholder="Enter password" required />
+              </label>
+              <button type="submit" class="primary-btn">ENTER GYM LAB</button>
+            </form>
+          </div>
+
+          <div id="signupPanel" class="auth-form-panel hidden">
+            <form id="signupForm" class="stacked-form">
+              <label>
+                <span>Full name</span>
+                <input type="text" id="signupName" placeholder="Your full name" required />
+              </label>
+              <label>
+                <span>Username</span>
+                <input type="text" id="signupUsername" placeholder="Create username" required />
+              </label>
+              <label>
+                <span>Password</span>
+                <input type="password" id="signupPassword" placeholder="Create password" required />
+              </label>
+              <button type="submit" class="primary-btn">CREATE PROFILE</button>
+            </form>
+          </div>
+
+          <p id="authMessage" class="status-text" aria-live="polite"></p>
+        </section>
+      </main>
+
+      <section class="panel profile-panel">
+        <div class="section-heading">
+          <h2>PERSONAL DETAILS</h2>
+          <span>STEP 01</span>
+        </div>
+
+        <form id="plannerForm" class="planner-form">
+          <div class="form-grid">
+            <label>
+              <span>Full name</span>
+              <input type="text" id="fullName" placeholder="Your name" required />
+            </label>
+
+            <label>
+              <span>Age</span>
+              <input type="number" id="age" min="15" max="80" placeholder="25" required />
+            </label>
+
+            <label>
+              <span>Height (cm)</span>
+              <input type="number" id="height" min="120" max="220" placeholder="175" required />
+            </label>
+
+            <label>
+              <span>Weight (kg)</span>
+              <input type="number" id="weight" min="35" max="200" placeholder="70" required />
+            </label>
+
+            <label>
+              <span>Goal</span>
+              <select id="goal" required>
+                <option value="cut">Lose fat</option>
+                <option value="maintain">Maintain</option>
+                <option value="bulk">Build muscle</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Work hours / day</span>
+              <select id="workHours" required>
+                <option value="4">4 hours</option>
+                <option value="6">6 hours</option>
+                <option value="8">8 hours</option>
+                <option value="10">10 hours</option>
+                <option value="12">12 hours</option>
+              </select>
+            </label>
+
+            <label class="full-span">
+              <span>Training experience</span>
+              <select id="experience" required>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </label>
+          </div>
+
+          <button type="submit" class="primary-btn wide-btn">GENERATE MY PLAN</button>
+        </form>
+      </section>
+
+      <section id="resultSection" class="results hidden">
+        <div class="panel summary-panel">
+          <div class="section-heading">
+            <h2>PLAN SUMMARY</h2>
+            <span>RESULT</span>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-card">
+              <span class="label">BMI</span>
+              <strong id="bmiValue">--</strong>
+            </div>
+            <div class="summary-card">
+              <span class="label">STATUS</span>
+              <strong id="bmiStatus">--</strong>
+            </div>
+            <div class="summary-card">
+              <span class="label">CALORIES</span>
+              <strong id="calorieTarget">--</strong>
+            </div>
+          </div>
+          <p id="bmiMessage" class="summary-message"></p>
+        </div>
+
+        <div class="panel chart-panel">
+          <div class="section-heading">
+            <h2>PROGRESS CHARTS</h2>
+            <span>DATA</span>
+          </div>
+          <div class="charts-grid">
+            <div class="chart-card">
+              <h3>BMI status</h3>
+              <svg id="bmiChart" viewBox="0 0 320 180" aria-label="BMI chart"></svg>
+            </div>
+            <div class="chart-card">
+              <h3>Calories</h3>
+              <svg id="calorieChart" viewBox="0 0 320 180" aria-label="Calorie chart"></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel diet-panel">
+          <div class="section-heading">
+            <h2>7-DAY DIET PLAN</h2>
+            <span>FUEL</span>
+          </div>
+          <div id="dietPlan" class="plan-list"></div>
+        </div>
+
+        <div class="panel gym-panel">
+          <div class="section-heading">
+            <h2>GYM SCHEDULE</h2>
+            <span>TRAIN</span>
+          </div>
+          <div id="gymPlan" class="plan-list"></div>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
